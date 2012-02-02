@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<meta charset="utf-8" />
+<script src="canvas2image.js"></script>
+<style>
+    .doc {
+        width: 604px;
+        margin: 0 auto;
+    }
+    canvas {
+        display: block;
+        border: 2px solid #888;
+    }
+</style>
+<body>
+<div class="doc">
+    <canvas width="600" height="400" id="cvs"></canvas>
+    <div>
+        <p>
+            <button id="save">save</button> or <button id="convert">convert to</button> as: 
+            <select id="sel">
+                <option value="png">png</option>
+                <option value="jpeg">jpeg</option>
+                <option value="bmp">bmp</option>
+            </select><br/>
+            width : <input type="number" value="300" id="imgW" /><br/>
+            height : <input type="number" value="200" id="imgH" />
+        </p>
+
+    </div>
+    <div id="imgs">
+        
+    </div>
+</div>
+<script>
+    var canvas, ctx, bMouseIsDown = false, iLastX, iLastY,
+        $save, $imgs,
+        $convert, $imgW, $imgH,
+        $sel;
+    function init () {
+        canvas = document.getElementById('cvs');
+        ctx = canvas.getContext('2d');
+        $save = document.getElementById('save');
+        $convert = document.getElementById('convert');
+        $sel = document.getElementById('sel');
+        $imgs = document.getElementById('imgs');
+        $imgW = document.getElementById('imgW');
+        $imgH = document.getElementById('imgH');
+        bind();
+        draw();
+    }
+    function bind () {
+        canvas.onmousedown = function(e) {
+            bMouseIsDown = true;
+            iLastX = e.clientX - canvas.offsetLeft + (window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft);
+            iLastY = e.clientY - canvas.offsetTop + (window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop);
+        }
+        canvas.onmouseup = function() {
+            bMouseIsDown = false;
+            iLastX = -1;
+            iLastY = -1;
+        }
+        canvas.onmousemove = function(e) {
+            if (bMouseIsDown) {
+                var iX = e.clientX - canvas.offsetLeft + (window.pageXOffset||document.body.scrollLeft||document.documentElement.scrollLeft);
+                var iY = e.clientY - canvas.offsetTop + (window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop);
+                ctx.moveTo(iLastX, iLastY);
+                ctx.lineTo(iX, iY);
+                ctx.stroke();
+                iLastX = iX;
+                iLastY = iY;
+            }
+        };
+        
+        $save.onclick = function (e) {
+            var type = $sel.value,
+                w = $imgW.value,
+                h = $imgH.value;
+            Canvas2Image.saveAsImage(canvas, w, h, type);
+        }
+        $convert.onclick = function (e) {
+            var type = $sel.value,
+                w = $imgW.value,
+                h = $imgH.value;
+            $imgs.appendChild(Canvas2Image.convertToImage(canvas, w, h, type))
+        }
+        
+    }
+    function draw () {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 600, 400);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(100, 100, 50, 50);
+    }
+    
+    
+    onload = init;
+</script>
+</body>
+</html>
