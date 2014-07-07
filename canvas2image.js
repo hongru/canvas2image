@@ -82,7 +82,7 @@ var Canvas2Image = function () {
 
 	/**
 	 * create bitmap image
-	 * °´ÕÕ¹æÔòÉú³ÉÍ¼Æ¬ÏìÓ¦Í·ºÍÏìÓ¦Ìå
+	 * ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ó¦Í·ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½
 	 */
 	var genBitmapImage = function (oData) {
 
@@ -199,6 +199,7 @@ var Canvas2Image = function () {
 	 */
 	var saveAsImage = function (canvas, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
+			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
 			type = fixType(type);
 			if (/bmp/.test(type)) {
@@ -215,6 +216,7 @@ var Canvas2Image = function () {
 
 	var convertToImage = function (canvas, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
+			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
 			type = fixType(type);
 
