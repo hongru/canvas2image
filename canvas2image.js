@@ -82,7 +82,7 @@ var Canvas2Image = function () {
 
 	/**
 	 * create bitmap image
-	 * °´ÕÕ¹æÔòÉú³ÉÍ¼Æ¬ÏìÓ¦Í·ºÍÏìÓ¦Ìå
+	 * æŒ‰ç…§è§„åˆ™ç”Ÿæˆå›¾ç‰‡å“åº”å¤´å’Œå“åº”ä½“
 	 */
 	var genBitmapImage = function (oData) {
 
@@ -188,7 +188,7 @@ var Canvas2Image = function () {
 		var strEncoded = encodeData(BITMAPFILEHEADER.concat(BITMAPINFOHEADER)) + encodeData(strPixelData);
 
 		return strEncoded;
-	};	
+	};
 
 	/**
 	 * saveAsImage
@@ -199,6 +199,7 @@ var Canvas2Image = function () {
 	 */
 	var saveAsImage = function (canvas, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
+			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
 			type = fixType(type);
 			if (/bmp/.test(type)) {
@@ -209,12 +210,12 @@ var Canvas2Image = function () {
 				var strData = getDataURL(canvas, type, width, height);
 				saveFile(strData.replace(type, downloadMime));
 			}
-		
 		}
-	}
+	};
 
 	var convertToImage = function (canvas, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
+			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
 			type = fixType(type);
 
@@ -227,7 +228,7 @@ var Canvas2Image = function () {
 				return genImage(strData);
 			}
 		}
-	}
+	};
 
 
 
@@ -237,27 +238,27 @@ var Canvas2Image = function () {
 			return saveAsImage(canvas, width, height, 'png');
 		},
 		saveAsJPEG: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'jpeg');			
+			return saveAsImage(canvas, width, height, 'jpeg');
 		},
 		saveAsGIF: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'gif')		   
+			return saveAsImage(canvas, width, height, 'gif');
 		},
 		saveAsBMP: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'bmp');		   
+			return saveAsImage(canvas, width, height, 'bmp');
 		},
-		
+
 		convertToImage: convertToImage,
 		convertToPNG: function (canvas, width, height) {
 			return convertToImage(canvas, width, height, 'png');
 		},
 		convertToJPEG: function (canvas, width, height) {
-			return convertToImage(canvas, width, height, 'jpeg');			   
+			return convertToImage(canvas, width, height, 'jpeg');
 		},
 		convertToGIF: function (canvas, width, height) {
-			return convertToImage(canvas, width, height, 'gif');			  
+			return convertToImage(canvas, width, height, 'gif');
 		},
 		convertToBMP: function (canvas, width, height) {
-			return convertToImage(canvas, width, height, 'bmp');			  
+			return convertToImage(canvas, width, height, 'bmp');
 		}
 	};
 
