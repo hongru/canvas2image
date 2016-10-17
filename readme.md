@@ -1,3 +1,4 @@
+
 # Canvas2image #
 a tool of saving or converting canvas to images
 
@@ -6,7 +7,8 @@ a tool of saving or converting canvas to images
 
 ## Code ##
 you can just use it like this
-> fileName is optional ，default is Date.now()
+filename is optional,default is Date.now()
+
     Canvas2Image.saveAsImage(canvasObj, width, height, type,fileName)
     Canvas2Image.saveAsPNG(canvasObj, width, height,fileName)
     Canvas2Image.saveAsJPEG(canvasObj, width, height,fileName)
