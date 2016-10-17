@@ -24,7 +24,8 @@
                 <option value="bmp">bmp</option>
             </select><br/>
             width : <input type="number" value="300" id="imgW" /><br/>
-            height : <input type="number" value="200" id="imgH" />
+            height : <input type="number" value="200" id="imgH" /><br>
+            fileName: <input type="text" placeholder="optional" id="imgFileName">
         </p>
 
     </div>
@@ -46,6 +47,7 @@
         $imgs = document.getElementById('imgs');
         $imgW = document.getElementById('imgW');
         $imgH = document.getElementById('imgH');
+        $imgFileName =document.getElementById('imgFileName');
         bind();
         draw();
     }
@@ -76,7 +78,8 @@
             var type = $sel.value,
                 w = $imgW.value,
                 h = $imgH.value;
-            Canvas2Image.saveAsImage(canvas, w, h, type);
+                f = $imgFileName.value;
+            Canvas2Image.saveAsImage(canvas, w, h, type,f);
         }
         $convert.onclick = function (e) {
             var type = $sel.value,
