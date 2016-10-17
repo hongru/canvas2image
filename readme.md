@@ -6,12 +6,12 @@ a tool of saving or converting canvas to images
 
 ## Code ##
 you can just use it like this
-
-    Canvas2Image.saveAsImage(canvasObj, width, height, type)
-    Canvas2Image.saveAsPNG(canvasObj, width, height)
-    Canvas2Image.saveAsJPEG(canvasObj, width, height)
-    Canvas2Image.saveAsGIF(canvasObj, width, height)
-    Canvas2Image.saveAsBMP(canvasObj, width, height)
+> fileName is optional ，default is Date.now()
+    Canvas2Image.saveAsImage(canvasObj, width, height, type,fileName)
+    Canvas2Image.saveAsPNG(canvasObj, width, height,fileName)
+    Canvas2Image.saveAsJPEG(canvasObj, width, height,fileName)
+    Canvas2Image.saveAsGIF(canvasObj, width, height,fileName)
+    Canvas2Image.saveAsBMP(canvasObj, width, height,fileName)
     
     Canvas2Image.convertToImage(canvasObj, width, height, type)
     Canvas2Image.convertToPNG(canvasObj, width, height)
