@@ -206,7 +206,7 @@ var Canvas2Image = function () {
 		if ($support.canvas && $support.dataURL) {
 			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
-			filename = filename == undefined|filename.length<=0 ?Date.now()+'.'+type: filename+'.'+type
+			filename = filename == undefined||filename.length === 0 ?Date.now()+'.'+type: filename+'.'+type
 			type = fixType(type);
 
 			if (/bmp/.test(type)) {
