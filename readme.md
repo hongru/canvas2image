@@ -6,7 +6,7 @@ a tool of saving or converting canvas to images
 [canvas2image](http://hongru.github.com/proj/canvas2image/index.html)
 
 ## Code ##
-you can just use it like this
+you can just use it like this  
 filename is optional,default is Date.now()
 
     Canvas2Image.saveAsImage(canvasObj, width, height, type,fileName)
