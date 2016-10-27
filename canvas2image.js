@@ -195,12 +195,15 @@ var Canvas2Image = function () {
 		return strEncoded;
 	};
 
+	
 	/**
-	 * saveAsImage
-	 * @param canvasElement
-	 * @param {String} image type
-	 * @param {Number} [optional] png width
-	 * @param {Number} [optional] png height
+	 * [saveAsImage]
+	 * @param  {[obj]} canvas   [canvasElement]
+	 * @param  {[Number]} width    [optional] png width
+	 * @param  {[Number]} height   [optional] png height
+	 * @param  {[String]} type     [image type]
+	 * @param  {[String]} filename [image filename]
+	 * @return {[type]}          [description]
 	 */
 	var saveAsImage = function (canvas, width, height, type,filename) {
 		if ($support.canvas && $support.dataURL) {
@@ -241,16 +244,16 @@ var Canvas2Image = function () {
 
 	return {
 		saveAsImage: saveAsImage,
-		saveAsPNG: function (canvas, width, height,fileName) {
+		saveAsPNG: function (canvas, width, height, fileName) {
 			return saveAsImage(canvas, width, height, 'png',fileName);
 		},
-		saveAsJPEG: function (canvas, width, height) {
+		saveAsJPEG: function (canvas, width, height, fileName) {
 			return saveAsImage(canvas, width, height, 'jpeg',fileName);
 		},
-		saveAsGIF: function (canvas, width, height) {
+		saveAsGIF: function (canvas, width, height, fileName) {
 			return saveAsImage(canvas, width, height, 'gif',fileName);
 		},
-		saveAsBMP: function (canvas, width, height) {
+		saveAsBMP: function (canvas, width, height, fileName) {
 			return saveAsImage(canvas, width, height, 'bmp',fileName);
 		},
 
