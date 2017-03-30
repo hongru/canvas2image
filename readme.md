@@ -2,6 +2,8 @@
 # Canvas2image #
 a tool of saving or converting canvas to images
 
+do not support IOS
+
 ## Demo ##
 [canvas2image](https://superal.github.io/canvas2image/)
 
