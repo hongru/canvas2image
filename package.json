@@ -1,0 +1,26 @@
+{
+  "name": "canvas2image",
+  "version": "1.0.6",
+  "description": "a tool of saving or converting canvas to images",
+  "main": "canvas2image.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SysopNecho/canvas2image.git"
+  },
+  "keywords": [
+    "canvas2image",
+    "canvas",
+    "image",
+    "convert",
+    "tool"
+  ],
+  "author": "hongru.chenhr@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SysopNecho/canvas2image/issues"
+  },
+  "homepage": "https://github.com/SysopNecho/canvas2image#readme"
+}
