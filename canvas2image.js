@@ -263,3 +263,7 @@ var Canvas2Image = function () {
 	};
 
 }();
+
+if ( typeof module === "object" && typeof module.exports === "object" ) {
+	module.exports = Canvas2Image;
+}
