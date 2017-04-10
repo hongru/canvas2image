@@ -237,14 +237,21 @@ var convertToImage = function (canvas, width, height, type) {
     }
 };
 
-/**
- * covert canvas to image
- * and save the image file
- */
-
-module.exports = {
-
-    Canvas2Image: {
+(function(f){
+    if (typeof exports === "object" && typeof module !== "undefined"){
+        module.exports=f();
+    } else if(typeof define === "function" && define.amd){
+        define([],f);
+    } else {
+        var g;
+        if (typeof window !== "undefined") g=window;
+        else if (typeof global !== "undefined") g=global;
+        else if (typeof self !== "undefined") g=self;
+        else g=this;
+        g.Canvas2Image = f();
+    }
+})(function(){
+    return {
         saveAsImage: saveAsImage,
         convertToImage: convertToImage,
         saveAsPNG: function (canvas, width, height) {
@@ -272,4 +279,4 @@ module.exports = {
             return convertToImage(canvas, width, height, 'bmp');
         }
     }
-};
+});
