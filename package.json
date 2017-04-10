@@ -1,6 +1,6 @@
 {
   "name": "canvas2image",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "a tool of saving or converting canvas to images",
   "main": "canvas2image.js",
   "scripts": {
