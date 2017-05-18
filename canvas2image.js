@@ -45,7 +45,7 @@ var Canvas2Image = function () {
 
 	function saveFile (strData,filename) {
 		var save_link = document.createElement('a');
-		save_link.href = URL.createObjectURL(new Blob([strData]))
+		save_link.href = strData;
 		save_link.download = filename;
 		var event = new MouseEvent('click',{"bubbles":false, "cancelable":false});
 		save_link.dispatchEvent(event);
