@@ -7,6 +7,12 @@ a tool of saving or converting canvas to images
 ## Code ##
 you can just use it like this
 
+```javascript
+    /*
+    *  use in commonJS
+    *  const Canvas2Image = require('canvas2image')
+    */
+
     Canvas2Image.saveAsImage(canvasObj, filename width, height, type)
     Canvas2Image.saveAsPNG(canvasObj, filename, width, height)
     Canvas2Image.saveAsJPEG(canvasObj, filename, width, height)
@@ -18,6 +24,7 @@ you can just use it like this
     Canvas2Image.convertToJPEG(canvasObj, width, height)
     Canvas2Image.convertToGIF(canvasObj, width, height)
     Canvas2Image.convertToBMP(canvasObj, width, height)
-    
+```
+
 ## License
 MIT
