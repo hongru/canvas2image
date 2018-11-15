@@ -196,11 +196,15 @@ var Canvas2Image = function () {
 	/**
 	 * saveAsImage
 	 * @param canvasElement
-	 * @param {String} image type
+	 * @param {String} [optional] file name 
 	 * @param {Number} [optional] png width
 	 * @param {Number} [optional] png height
+	 * @param {String} image type 
 	 */
-	var saveAsImage = function (canvas, filename,  width, height, type) {
+	var saveAsImage = function (canvas, filename, width, height, type) {
+		if (typeof filename !== 'string' || filename === '') {
+			filename = Date.now() + '.' + type
+		}
 		if ($support.canvas && $support.dataURL) {
 			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
@@ -266,3 +270,8 @@ var Canvas2Image = function () {
 	};
 
 }();
+
+// support commonJS module
+if (typeof module != 'undefined') {
+	module.exports = Canvas2Image
+}

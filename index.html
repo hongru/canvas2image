@@ -76,7 +76,7 @@
         
         $save.onclick = function (e) {
             var type = $sel.value,
-                filename = $filename.value + '.' + type
+                filename = $filename.value
                 w = $imgW.value,
                 h = $imgH.value;
             Canvas2Image.saveAsImage(canvas, filename, w, h, type);
