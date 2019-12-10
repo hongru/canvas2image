@@ -1,4 +1,6 @@
 # Canvas2image #
+[![run on repl.it](http://repl.it/badge/github/hongru/canvas2image)](https://repl.it/github/hongru/canvas2image)
+
 a tool of saving or converting canvas to images
 
 ## Demo ##
