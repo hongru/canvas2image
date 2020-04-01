@@ -43,8 +43,19 @@ var Canvas2Image = function () {
 		return canvas.toDataURL(type);
 	}
 
-	function saveFile (strData) {
-		document.location.href = strData;
+	function saveFile (strData, type) {
+		// Download file with filename as image.png 
+		var link = document.createElement('a');
+		if (typeof link.download === 'string')
+		{
+			link.href = strData;
+			link.download = "image."+type;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}else{
+			window.open(uri);
+		}
 	}
 
 	function genImage(strData) {
@@ -201,14 +212,15 @@ var Canvas2Image = function () {
 		if ($support.canvas && $support.dataURL) {
 			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
+			var rawType = type;
 			type = fixType(type);
 			if (/bmp/.test(type)) {
 				var data = getImageData(scaleCanvas(canvas, width, height));
 				var strData = genBitmapImage(data);
-				saveFile(makeURI(strData, downloadMime));
+				saveFile(makeURI(strData, downloadMime), rawType);
 			} else {
 				var strData = getDataURL(canvas, type, width, height);
-				saveFile(strData.replace(type, downloadMime));
+				saveFile(strData.replace(type, downloadMime), rawType);
 			}
 		}
 	};
