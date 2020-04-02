@@ -43,8 +43,11 @@ var Canvas2Image = function () {
 		return canvas.toDataURL(type);
 	}
 
-	function saveFile (strData) {
-		document.location.href = strData;
+	function saveFile (filename, strData) {
+		var link = document.createElement('a');
+		link.download = filename;
+		link.href = strData;
+		link.click();
 	}
 
 	function genImage(strData) {
@@ -197,18 +200,17 @@ var Canvas2Image = function () {
 	 * @param {Number} [optional] png width
 	 * @param {Number} [optional] png height
 	 */
-	var saveAsImage = function (canvas, width, height, type) {
+	var saveAsImage = function (canvas, filename, width, height, type) {
 		if ($support.canvas && $support.dataURL) {
 			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
-			type = fixType(type);
-			if (/bmp/.test(type)) {
+			if (type == 'bmp') {
 				var data = getImageData(scaleCanvas(canvas, width, height));
 				var strData = genBitmapImage(data);
-				saveFile(makeURI(strData, downloadMime));
+				saveFile(filename + '.' + type, makeURI(strData, downloadMime));
 			} else {
-				var strData = getDataURL(canvas, type, width, height);
-				saveFile(strData.replace(type, downloadMime));
+				var strData = getDataURL(canvas, fixType(type), width, height);
+				saveFile(filename + '.' + type, strData.replace(type, downloadMime));
 			}
 		}
 	};
@@ -234,17 +236,17 @@ var Canvas2Image = function () {
 
 	return {
 		saveAsImage: saveAsImage,
-		saveAsPNG: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'png');
+		saveAsPNG: function (canvas, filename, width, height) {
+			return saveAsImage(canvas, filename, width, height, 'png');
 		},
-		saveAsJPEG: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'jpeg');
+		saveAsJPEG: function (canvas, filename, width, height) {
+			return saveAsImage(canvas, filename, width, height, 'jpeg');
 		},
-		saveAsGIF: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'gif');
+		saveAsGIF: function (canvas, filename, width, height) {
+			return saveAsImage(canvas, filename, width, height, 'gif');
 		},
-		saveAsBMP: function (canvas, width, height) {
-			return saveAsImage(canvas, width, height, 'bmp');
+		saveAsBMP: function (canvas, filename, width, height) {
+			return saveAsImage(canvas, filename, width, height, 'bmp');
 		},
 
 		convertToImage: convertToImage,
