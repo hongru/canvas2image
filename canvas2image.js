@@ -43,8 +43,16 @@ var Canvas2Image = function () {
 		return canvas.toDataURL(type);
 	}
 
-	function saveFile (strData) {
-		document.location.href = strData;
+	// save file to local with file name and file type
+	function saveFile (strData, fileType, fileName='name') {
+		// document.location.href = strData;
+		let saveLink = document.createElement('a');
+		// download file name
+		saveLink.download = fileName + '.' + fileType;
+		// download file data
+		saveLink.href = strData;
+		// start download
+		saveLink.click()
 	}
 
 	function genImage(strData) {
@@ -174,8 +182,8 @@ var Canvas2Image = function () {
 			for (var x = 0; x < biWidth; x++) {
 				var iOffsetX = x<<2;
 				strPixelRow += fromCharCode(aImgData[iOffsetY+iOffsetX+2]) +
-							   fromCharCode(aImgData[iOffsetY+iOffsetX+1]) +
-							   fromCharCode(aImgData[iOffsetY+iOffsetX]);
+					fromCharCode(aImgData[iOffsetY+iOffsetX+1]) +
+					fromCharCode(aImgData[iOffsetY+iOffsetX]);
 			}
 
 			for (var c = 0; c < iPadding; c++) {
@@ -198,6 +206,8 @@ var Canvas2Image = function () {
 	 * @param {Number} [optional] png height
 	 */
 	var saveAsImage = function (canvas, width, height, type) {
+		// save file type
+		const fileType = type;
 		if ($support.canvas && $support.dataURL) {
 			if (typeof canvas == "string") { canvas = document.getElementById(canvas); }
 			if (type == undefined) { type = 'png'; }
@@ -205,10 +215,12 @@ var Canvas2Image = function () {
 			if (/bmp/.test(type)) {
 				var data = getImageData(scaleCanvas(canvas, width, height));
 				var strData = genBitmapImage(data);
-				saveFile(makeURI(strData, downloadMime));
+				// use new parameter: fileType
+				saveFile(makeURI(strData, downloadMime), fileType);
 			} else {
 				var strData = getDataURL(canvas, type, width, height);
-				saveFile(strData.replace(type, downloadMime));
+				// use new parameter: fileType
+				saveFile(strData.replace(type, downloadMime), fileType);
 			}
 		}
 	};
@@ -263,3 +275,6 @@ var Canvas2Image = function () {
 	};
 
 }();
+
+// Export function, used in npm
+module.exports = Canvas2Image;
