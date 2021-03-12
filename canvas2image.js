@@ -249,15 +249,12 @@ const Canvas2Image = (function () {
      * @param type {string} [optional] png height
      * @param fileName {String} image name
      */
-    const saveAsImage = function (canvas, width, height, type, fileName) {
+    const saveAsImage = function (canvas, width, height, type = "png", fileName) {
         // save file type
         const fileType = type;
         if ($support.canvas && $support.dataURL) {
             if (typeof canvas == "string") {
                 canvas = document.getElementById(canvas);
-            }
-            if (type === undefined) {
-                type = "png";
             }
             type = fixType(type);
             if (/bmp/.test(type)) {
@@ -273,14 +270,12 @@ const Canvas2Image = (function () {
         }
     };
 
-    const convertToImage = function (canvas, width, height, type) {
+    const convertToImage = function (canvas, width, height, type = "png") {
         if ($support.canvas && $support.dataURL) {
             if (typeof canvas == "string") {
                 canvas = document.getElementById(canvas);
             }
-            if (type === undefined) {
-                type = "png";
-            }
+            
             type = fixType(type);
 
             if (/bmp/.test(type)) {
